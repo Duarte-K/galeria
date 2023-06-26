@@ -1,0 +1,36 @@
+{
+  "name": "galeria",
+  "version": "1.0.0",
+  "description": "",
+  "exports": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duarte-K/galeria.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duarte-K/galeria/issues"
+  },
+  "homepage": "https://github.com/Duarte-K/galeria#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-image": "^6.3.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "node-sass": "^9.0.0",
+    "sass": "^1.63.6"
+  },
+  "dependencies": {
+    "gulp-rename": "^2.0.0"
+  },
+  "type": "module"
+}

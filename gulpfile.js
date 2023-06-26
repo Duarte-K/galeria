@@ -1,5 +1,5 @@
 import pkg from "gulp";
-const { src, dest, parallel } = pkg;
+const { src, dest, parallel, task, watch } = pkg;
 
 import rename from "gulp-rename";
 import GulpUglify from "gulp-uglify";
@@ -8,8 +8,8 @@ import GulpImage from "gulp-image";
 import babel from "gulp-babel";
 import cssImport from "gulp-cssimport";
 
-import dartSass from 'sass';
-import gulpSass from 'gulp-sass';
+import dartSass from "sass";
+import gulpSass from "gulp-sass";
 const sass = gulpSass(dartSass);
 
 // Exporta o HTML
@@ -47,6 +47,14 @@ const scss = () =>
 // Otimiza as imagens e exporta
 const images = () =>
     src("./src/img/*.jpg").pipe(GulpImage()).pipe(dest("./public/img/"));
+
+// Executa o gulp em tempo real
+task('watch', () => {
+    watch("src/*.html", base);
+    watch("src/js/*.js", js);
+    watch("src/sass/*.sass", scss);
+    watch("src/img/*.jpg", images);
+})
 
 // Executa os métodos configurados do gulp
 export default parallel(base, js, scss, images);

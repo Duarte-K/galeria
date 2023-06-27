@@ -17,7 +17,7 @@ const base = () => src("./src/*.html").pipe(dest("./public/"));
 
 // Otimiza, Traduz para navegadores mais antigos, renomeia e exporta o JavaScript
 const js = () =>
-    src("./src/js/*.js")
+    src("./src/js/**/*.js")
         .pipe(
             babel({
                 presets: ["@babel/env"],
@@ -51,7 +51,7 @@ const images = () =>
 // Executa o gulp em tempo real
 task('watch', () => {
     watch("src/*.html", base);
-    watch("src/js/*.js", js);
+    watch("src/js/**/*.js", js);
     watch("src/sass/*.sass", scss);
     watch("src/img/*.jpg", images);
 })

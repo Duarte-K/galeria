@@ -1,3 +1,3 @@
-window.onload = () => {
-    startGetImages()
+window.onload = async () => {
+    await startGetImages();
 };

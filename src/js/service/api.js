@@ -62,7 +62,6 @@ const deleteAllDatas = function (db, tabela, links) {
     var request = objectStore.clear();
 
     request.onsuccess = function (event) {
-        console.log("Todos os dados da tabela foram deletados com sucesso.");
         var promissesArray = [];
 
         for (let i = 0; i < 9; i++) {
@@ -72,11 +71,8 @@ const deleteAllDatas = function (db, tabela, links) {
 
         Promise.all(promissesArray)
             .then(() => {
-                console.log("Todos os registros foram adicionados com sucesso");
                 selectAll(db)
                     .then(function (dadosArray) {
-                        console.log("Sucesso");
-                        console.log(dadosArray); // Array de dados da tabela
                         showImage();
                     })
                     .catch(function (error) {
@@ -121,17 +117,20 @@ const selectAll = function (db) {
     });
 };
 
-
 const getDadosArray = () => {
     return dadosArray;
-}
+};
 
 const showImage = () => {
     getDadosArray();
-    let number = 1
+    let number = 1;
     for (let i = 0; i < dadosArray.length; i++) {
-        document.getElementById(`card-${number}`).style.background = `url("${dadosArray[i].link}") no-repeat center center`;
-        document.getElementById(`card-${number}`).style.backgroundSize = `cover`;
+        document.getElementById(
+            `card-${number}`
+        ).style.background = `url("${dadosArray[i].link}") no-repeat center center`;
+        document.getElementById(
+            `card-${number}`
+        ).style.backgroundSize = `cover`;
         number++;
     }
-}
+};

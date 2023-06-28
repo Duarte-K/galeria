@@ -77,6 +77,7 @@ const deleteAllDatas = function (db, tabela, links) {
                     .then(function (dadosArray) {
                         console.log("Sucesso");
                         console.log(dadosArray); // Array de dados da tabela
+                        showImage();
                     })
                     .catch(function (error) {
                         console.log(error); // Tratar erros
@@ -123,4 +124,14 @@ const selectAll = function (db) {
 
 const getDadosArray = () => {
     return dadosArray;
+}
+
+const showImage = () => {
+    getDadosArray();
+    let number = 1
+    for (let i = 0; i < dadosArray.length; i++) {
+        document.getElementById(`card-${number}`).style.background = `url("${dadosArray[i].link}") no-repeat center center`;
+        document.getElementById(`card-${number}`).style.backgroundSize = `cover`;
+        number++;
+    }
 }

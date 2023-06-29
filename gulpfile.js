@@ -16,6 +16,22 @@ const sass = gulpSass(dartSass);
 const base = () => src("./src/*.html").pipe(dest("./public/"));
 
 // Otimiza, Traduz para navegadores mais antigos, renomeia e exporta o JavaScript
+const sw = () =>
+    src("./src/*.js")
+        .pipe(
+            babel({
+                presets: ["@babel/env"],
+            })
+        )
+        .pipe(GulpUglify())
+        .pipe(
+            rename({
+                extname: ".min.js",
+            })
+        )
+        .pipe(dest("./public/"));
+
+// Otimiza, Traduz para navegadores mais antigos, renomeia e exporta o JavaScript
 const js = () =>
     src("./src/js/**/*.js")
         .pipe(
@@ -44,17 +60,13 @@ const scss = () =>
         )
         .pipe(dest("./public/css/"));
 
-// Otimiza as imagens e exporta
-const images = () =>
-    src("./src/img/*.jpg").pipe(GulpImage()).pipe(dest("./public/img/"));
-
 // Executa o gulp em tempo real
 task('watch', () => {
     watch("src/*.html", base);
+    watch("src/*.js", sw);
     watch("src/js/**/*.js", js);
     watch("src/sass/*.sass", scss);
-    watch("src/img/*.jpg", images);
 })
 
 // Executa os métodos configurados do gulp
-export default parallel(base, js, scss, images);
+export default parallel(base, sw, js, scss);

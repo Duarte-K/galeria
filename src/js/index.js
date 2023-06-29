@@ -1,16 +1,19 @@
+// Registra o service worker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker
+            .register("sw.min.js")
+            .then((registration) => {
+                console.log(
+                    "Service Worker registrado com sucesso: " + registration
+                );
+            })
+            .catch((error) => {
+                console.log("Erro ao registrar Service Worker" + error);
+            });
+    });
+}
+
 window.onload = async () => {
     await startGetImages();
 };
-
-if ("serviceWorker" in navigator) {
-    console.log("Service Worker is Supported");
-
-    window.addEventListener("load", () => {
-        navigator.serviceWorker
-            .register("js/sw.min.js")
-            .then((register) => console.log("Service worker registered"))
-            .catch((error) => console.log("Error: " + error));
-    });
-} else {
-    console.log("Service Worker is not Supported");
-}
